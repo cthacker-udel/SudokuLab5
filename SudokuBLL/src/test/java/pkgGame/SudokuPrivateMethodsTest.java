@@ -56,7 +56,7 @@ public class SudokuPrivateMethodsTest {
 
 		try {
 			Class<?> c = Class.forName("pkgGame.Sudoku");
-			Constructor constructor = c.getConstructor(new Class[] { int.class });
+			Constructor constructor = c.getDeclaredConstructor(new Class[] { int.class });
 			constructor.setAccessible(true);
 			s1 = (Sudoku) constructor.newInstance(iPuzzleSize);
 
@@ -110,7 +110,7 @@ public class SudokuPrivateMethodsTest {
 		
 		try {
 			Class<?> c = Class.forName("pkgGame.Sudoku");
-			Constructor constructor = c.getConstructor(new Class[] { int.class });
+			Constructor constructor = c.getDeclaredConstructor(new Class[] { int.class });
 			constructor.setAccessible(true);
 			s1 = (Sudoku) constructor.newInstance(iPuzzleSize);
 
