@@ -19,7 +19,7 @@ public class SudokuTest {
 	public void Sudoku_Test1() {
 
 		try {
-			Sudoku s1 = new Sudoku(9);
+			Sudoku s1 = SudokuPrivateMethodsTest.CreateSudokuWithSize(9);
 		} catch (Exception e) {
 			fail("Test failed to build a Sudoku");
 		}
@@ -30,7 +30,7 @@ public class SudokuTest {
 	public void Sudoku_Test2() {
 	 
 	  Assertions.assertThrows(Exception.class, () -> {
-		  Sudoku s1 = new Sudoku(10);
+		  Sudoku s1 = SudokuPrivateMethodsTest.CreateSudokuWithSize(10);
 	  });
 	 
 	}
@@ -129,7 +129,7 @@ public class SudokuTest {
 	public void Sudoku_FullPuzzle_1()
 	{
 		try {
-			Sudoku s1 = new Sudoku(9);
+			Sudoku s1 = SudokuPrivateMethodsTest.CreateSudokuWithSize(9);
 			s1.PrintPuzzle();
 			assertTrue(s1.isSudoku());
 
