@@ -94,7 +94,8 @@ public class Sudoku extends LatinSquare implements Serializable {
 		SetCells();
 		fillRemaining(this.cells.get(Objects.hash(0, iSqrtSize)));
 		//FIXME - Fix this code
-		//RemoveCells();
+		this.eGameDifficulty = eGameDifficulty.EASY
+		RemoveCells();
 
 	}
 
