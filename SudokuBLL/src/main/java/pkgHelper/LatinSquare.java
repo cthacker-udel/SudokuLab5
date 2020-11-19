@@ -337,6 +337,19 @@ public class LatinSquare {
 		return false;
 
 	}
+	
+	public int CountZero() {
+		int count = 0;
+		for (int i = 0; i < LatinSquare.length; i++) {
+			for (int j = 0; j < LatinSquare.length; j++) {
+				if (LatinSquare[i][j] == 0) {
+					count += 1;
+				}
+			}
+		}
+		return count;
+	}
+	
 
 	/**
 	 * getPV - Return the collection of PuzzleViolations
