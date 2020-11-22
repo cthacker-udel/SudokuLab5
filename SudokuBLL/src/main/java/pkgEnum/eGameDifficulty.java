@@ -8,7 +8,7 @@ public enum eGameDifficulty {
 
 	EASY(100), MEDIUM(500), HARD(1000);
 
-	private final int iDifficulty;
+	private final double iDifficulty;
 
 	private static final Map<Integer, eGameDifficulty> lookup = new HashMap<Integer, eGameDifficulty>();
 
@@ -18,11 +18,11 @@ public enum eGameDifficulty {
 		}
 	}
 
-	private eGameDifficulty(int iDifficulty) {
+	private eGameDifficulty(double iDifficulty) {
 		this.iDifficulty = iDifficulty;
 	}
 
-	public int getiDifficulty() {
+	public double getiDifficulty() {
 		return iDifficulty;
 	}
 
@@ -54,7 +54,7 @@ public enum eGameDifficulty {
 	 * @return
 	 */
 
-	public static eGameDifficulty get(int iDifficulty) {
+	public static eGameDifficulty get(double iDifficulty) {
 
 		Iterator it = lookup.entrySet().iterator();
 		eGameDifficulty eGD = null;
@@ -62,7 +62,7 @@ public enum eGameDifficulty {
 		while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
 			eGameDifficulty enumDifficulty = (eGameDifficulty) pair.getValue();
-			int iDifficultyValue = (int) pair.getKey();
+			double iDifficultyValue = (int) pair.getKey();
 			if (iDifficulty > iDifficultyValue) {
 				eGD = enumDifficulty;
 			}
