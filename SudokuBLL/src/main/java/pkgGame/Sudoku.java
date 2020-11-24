@@ -93,8 +93,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		FillDiagonalRegions();
 		SetCells();
 		fillRemaining(this.cells.get(Objects.hash(0, iSqrtSize)));
-		//FIXME - Fix this code
-		this.eGameDifficulty = eGameDifficulty.EASY
+		this.eGameDifficulty = eGameDifficulty.EASY;
 		RemoveCells();
 
 	}
@@ -109,7 +108,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 * @param eGD   - Difficulty of the game
 	 * @throws Exception
 	 */
-	public Sudoku(int iSize, double eGameDifficulty eGD) throws Exception {
+	public Sudoku(int iSize,eGameDifficulty eGD) throws Exception {
 		this(iSize);
 		this.eGameDifficulty = eGD;
 		RemoveCells();
@@ -150,14 +149,27 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 */
 	private void RemoveCells() {
 		SetRemaingCells();
-
-		do {
-			Random rand = new SecureRandom();
-			int iRandomRow = rand.nextInt(this.iSize);
-			int iRandomCol = rand.nextInt(this.iSize);
-			this.getPuzzle()[iRandomRow][iRandomCol] = 0;
-			SetRemaingCells();
-		} while (!IsDifficultyMet(PossibleValuesMultiplier(this.cells)));
+		
+		double pctRemoved = 0;
+		double pctToRemove = 0;
+		for(int r = 0; r < iSize; r++) {
+			do {
+			
+				int colMin = (r % iSqrtSize) * iSqrtSize;
+				int rowMin = (r / iSqrtSize) * iSqrtSize;
+				int colMax = colMin + iSqrtSize;
+				int rowMax = rowMin + iSqrtSize;
+			
+				Random rand = new SecureRandom();
+				int iRandomRow = rand.nextInt(rowMax - rowMin) + rowMin;
+				int iRandomCol = rand.nextInt(colMax - colMin) + colMin;
+				this.getPuzzle()[iRandomRow][iRandomCol] = 0;
+				int iZeroCnt = this.CountZero(r);
+				pctToRemove = this.eGameDifficulty.getiDifficulty();
+				pctRemoved = (double)iZeroCnt / (this.iSize);
+				SetRemaingCells();
+			} while (pctRemoved < pctToRemove);
+		}
 
 	}
 
@@ -416,7 +428,16 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 * @param r given region
 	 * @return - returns a one-dimensional array from a given region of the puzzle
 	 */
-
+	public int CountZero(int regionNbr) {
+		int[] region = this.getRegion(regionNbr);
+		int count = 0;
+		for(int i = 0; i < region.length; i++) {
+			if(region[i] == 0) {
+				count++;
+			}
+		}
+		return count;
+	}
 	public int[] getRegion(int r) {
 
 		int[] reg = new int[super.getLatinSquare().length];

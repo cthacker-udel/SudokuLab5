@@ -6,11 +6,11 @@ import java.util.Map;
 
 public enum eGameDifficulty {
 
-	EASY(100), MEDIUM(500), HARD(1000);
+	EASY(.10), MEDIUM(.25), HARD(.50);
 
 	private final double iDifficulty;
 
-	private static final Map<Integer, eGameDifficulty> lookup = new HashMap<Integer, eGameDifficulty>();
+	private static final Map<Double, eGameDifficulty> lookup = new HashMap<Double, eGameDifficulty>();
 
 	static {
 		for (eGameDifficulty d : eGameDifficulty.values()) {
