@@ -21,7 +21,7 @@ public class SudokuPrivateMethodsTest {
 		Sudoku s1 = null;
 		try {
 			Class<?> c = Class.forName("pkgGame.Sudoku");
-			Constructor constructor = c.getDeclaredConstructor(new Class[] { int.class });
+			Constructor<?> constructor = c.getDeclaredConstructor(new Class[] { int.class });
 			constructor.setAccessible(true);
 			s1 = (Sudoku) constructor.newInstance(iSize);
 		} catch (ClassNotFoundException e1) {

@@ -94,7 +94,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		SetCells();
 		fillRemaining(this.cells.get(Objects.hash(0, iSqrtSize)));
 		this.eGameDifficulty = eGameDifficulty.EASY;
-		RemoveCells();
+		this.PrintPuzzle();
 
 	}
 
@@ -148,7 +148,6 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 * @since Lab #5
 	 */
 	private void RemoveCells() {
-		SetRemaingCells();
 		
 		double pctRemoved = 0;
 		double pctToRemove = 0;
@@ -167,7 +166,6 @@ public class Sudoku extends LatinSquare implements Serializable {
 				int iZeroCnt = this.CountZero(r);
 				pctToRemove = this.eGameDifficulty.getiDifficulty();
 				pctRemoved = (double)iZeroCnt / (this.iSize);
-				SetRemaingCells();
 			} while (pctRemoved < pctToRemove);
 		}
 
