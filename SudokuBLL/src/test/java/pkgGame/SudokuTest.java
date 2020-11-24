@@ -28,7 +28,7 @@ public class SudokuTest {
 
 	@Test
 	public void Sudoku_Test2() {
-	  Assertions.assertThrows(InvocationTargetException.class, () -> {
+	  Assertions.assertThrows(Exception.class, () -> {
 		  Sudoku s1 = SudokuPrivateMethodsTest.CreateSudokuWithSize(10);
 	  });
 	}
